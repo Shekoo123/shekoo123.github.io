@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shehab Eldien — E-Commerce Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F6F2; --surface:#FFFFFF; --surface-2:#EEF0E9;
+    --ink:#14181C; --ink-soft:#4B534C; --ink-faint:#7B8279; --border:#D9DCD3;
+    --amber:#AD7A1E; --amber-ink:#7A5613; --teal:#1F6F64; --teal-soft:#E4EFEC; --amber-soft:#F3E9D6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#14171A; --surface:#1B1F22; --surface-2:#202426;
+      --ink:#ECEEE9; --ink-soft:#AEB5AC; --ink-faint:#7D847E; --border:#2B302E;
+      --amber:#E3A83E; --amber-ink:#F4D28C; --teal:#4FB6A8; --teal-soft:#1B2E2B; --amber-soft:#2E2717;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:"Big Shoulders Display","Arial Narrow",sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.01em; margin:0; color:var(--ink); }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  a{ color:inherit; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  .topbar{ position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+  .topbar-inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 28px; max-width:1080px; margin:0 auto; gap:16px; }
+  .brand{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:1.15rem; letter-spacing:0.02em; }
+  .status-tag{ display:inline-flex; align-items:center; gap:7px; font-family:"IBM Plex Mono",monospace; font-size:0.72rem; letter-spacing:0.06em; color:var(--teal); text-transform:uppercase; }
+  .status-dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 3px var(--teal-soft); }
+  .topnav{ display:flex; gap:22px; font-size:0.85rem; color:var(--ink-soft); }
+  .topnav a{ text-decoration:none; }
+  .topnav a:hover{ color:var(--ink); }
+  @media (max-width:640px){ .topnav{ display:none; } }
+
+  .hero{ padding:64px 0 40px; }
+  .eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; letter-spacing:0.08em; color:var(--amber-ink); text-transform:uppercase; margin-bottom:14px; display:block; }
+  .hero h1{ font-size:clamp(2.6rem, 7vw, 4.6rem); line-height:0.96; }
+  .hero .role{ font-size:clamp(1.05rem,2.4vw,1.35rem); color:var(--ink-soft); margin-top:14px; max-width:640px; font-weight:500; }
+  .stat-row{ display:flex; flex-wrap:wrap; gap:0; margin-top:38px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .stat{ flex:1 1 150px; padding:18px 20px; border-right:1px solid var(--border); }
+  .stat:last-child{ border-right:none; }
+  .stat .num{ font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:2rem; color:var(--amber-ink); }
+  .stat .lbl{ font-size:0.78rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; margin-top:2px; }
+
+  .contact-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+  .chip{ display:inline-flex; align-items:center; gap:8px; padding:9px 14px; border:1px solid var(--border); border-radius:3px; font-size:0.85rem; text-decoration:none; color:var(--ink); background:var(--surface); }
+  .chip.primary{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .chip:hover{ border-color:var(--amber); }
+
+  section{ padding:56px 0; border-top:1px solid var(--border); }
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:30px; }
+  .sec-head h2{ font-size:clamp(1.6rem,3.4vw,2.2rem); }
+  .sec-index{ font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:0.8rem; }
+
+  .tag-groups{ display:flex; flex-direction:column; gap:14px; }
+  .tag-group{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+  .tag-group .tg-label{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; width:112px; flex:0 0 auto; }
+  .tag{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; padding:5px 10px; border-radius:2px; border:1px solid var(--border); background:var(--surface); color:var(--ink-soft); }
+
+  .cases{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:760px){ .cases{ grid-template-columns:1fr; } }
+  .case{ background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:26px; display:flex; flex-direction:column; gap:16px; }
+  .case-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .case-head h3{ font-size:1.6rem; }
+  .live-badge{ display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; font-family:"IBM Plex Mono",monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--teal); background:var(--teal-soft); padding:5px 9px; border-radius:2px; }
+  .live-badge.closed{ color:var(--ink-faint); background:var(--surface-2); }
+  .case .meta{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; color:var(--ink-faint); }
+  .case ul{ margin:0; padding-left:18px; color:var(--ink-soft); font-size:0.93rem; line-height:1.55; display:flex; flex-direction:column; gap:6px; }
+  .case-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:6px; border-top:1px dashed var(--border); }
+  .visit{ font-size:0.85rem; text-decoration:none; color:var(--amber-ink); font-weight:600; }
+  .visit:hover{ text-decoration:underline; }
+  .platform-pill{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:var(--ink-faint); }
+
+  .skills-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px 24px; }
+  @media (max-width:760px){ .skills-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:480px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-col .sk-num{ font-family:"IBM Plex Mono",monospace; color:var(--amber-ink); font-size:0.78rem; }
+  .skill-col h4{ margin:4px 0 10px; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink); font-family:"IBM Plex Sans"; font-weight:600; }
+  .skill-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .skill-col li{ font-size:0.88rem; color:var(--ink-soft); padding-left:14px; position:relative; }
+  .skill-col li::before{ content:"—"; position:absolute; left:0; color:var(--border); }
+
+  .timeline{ display:flex; flex-direction:column; }
+  .trow{ display:grid; grid-template-columns:150px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--border); }
+  .trow:last-child{ border-bottom:none; }
+  @media (max-width:600px){ .trow{ grid-template-columns:1fr; gap:4px; } }
+  .trow .tdate{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; color:var(--ink-faint); padding-top:2px; }
+  .trow .trole{ font-weight:600; font-size:0.98rem; }
+  .trow .tco{ color:var(--ink-faint); font-weight:400; }
+  .trow p{ margin:4px 0 0; font-size:0.88rem; color:var(--ink-soft); line-height:1.5; max-width:60ch; }
+
+  .services{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  @media (max-width:700px){ .services{ grid-template-columns:1fr; } }
+  .svc{ border:1px solid var(--border); background:var(--surface); border-radius:4px; padding:20px; }
+  .svc .svc-tag{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; color:var(--amber-ink); background:var(--amber-soft); display:inline-block; padding:3px 8px; border-radius:2px; margin-bottom:10px; }
+  .svc h4{ margin:0 0 6px; font-size:1.05rem; font-family:"IBM Plex Sans"; font-weight:600; text-transform:none; }
+  .svc p{ margin:0; font-size:0.87rem; color:var(--ink-soft); line-height:1.5; }
+
+  .contact-panel{ background:var(--ink); color:var(--bg); border-radius:6px; padding:42px 34px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; }
+  .contact-panel h2{ color:var(--bg); font-size:clamp(1.6rem,4vw,2.4rem); }
+  .contact-panel p{ color:color-mix(in srgb, var(--bg) 70%, transparent); margin:8px 0 0; font-size:0.95rem; max-width:44ch; }
+  .contact-actions{ display:flex; flex-direction:column; gap:10px; }
+  .btn{ font-family:"IBM Plex Mono",monospace; font-size:0.82rem; text-decoration:none; padding:12px 18px; border-radius:3px; text-align:center; letter-spacing:0.02em; border:none; cursor:pointer; }
+  .btn.gold{ background:var(--amber); color:#1B1400; font-weight:500; }
+  .btn.outline{ border:1px solid color-mix(in srgb, var(--bg) 35%, transparent); color:var(--bg); background:transparent; }
+
+  .brief-form{ background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:28px; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .brief-form{ grid-template-columns:1fr; } }
+  .brief-form .full{ grid-column:1 / -1; }
+  .field label{ display:block; font-family:"IBM Plex Mono",monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-faint); margin-bottom:6px; }
+  .field input, .field select, .field textarea{ width:100%; background:var(--bg); border:1px solid var(--border); border-radius:3px; padding:10px 12px; color:var(--ink); font-family:"IBM Plex Sans"; font-size:0.92rem; }
+  .field textarea{ resize:vertical; min-height:80px; }
+  .brief-submit{ background:var(--ink); color:var(--bg); font-family:"IBM Plex Mono",monospace; font-size:0.85rem; padding:12px 20px; border-radius:3px; border:none; cursor:pointer; }
+  .brief-note{ font-size:0.82rem; color:var(--ink-faint); margin-top:4px; }
+  .brief-thanks{ text-align:center; padding:30px; color:var(--ink-soft); font-size:0.98rem; }
+
+  footer{ padding:26px 0 46px; text-align:center; color:var(--ink-faint); font-size:0.78rem; font-family:"IBM Plex Mono",monospace; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">SHEHAB ELDIEN</div>
+    <div class="status-tag"><span class="status-dot"></span>Open for freelance work</div>
+    <nav class="topnav">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#brief">Brief</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none; padding-top:56px;">
+    <span class="eyebrow">End-to-End E-Commerce Operations</span>
+    <h1>The full stack<br>behind your storefront.</h1>
+    <p class="role">Catalog and ERP sync, Shopify development, campaigns, UX, payments, and support — I run the whole store, not just the product list, for brands on Shopify, WooCommerce, Odoo, Zid, and Salla.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num mono">5+</div><div class="lbl">Years in e-commerce ops</div></div>
+      <div class="stat"><div class="num mono">2,000+</div><div class="lbl">SKUs managed at once</div></div>
+      <div class="stat"><div class="num mono">6</div><div class="lbl">Platforms &amp; marketplaces</div></div>
+      <div class="stat"><div class="num mono">1,000+</div><div class="lbl">Customer issues resolved / mo</div></div>
+    </div>
+
+    <div class="contact-row">
+      <a class="chip primary" href="mailto:shehabeldien123@gmail.com">shehabeldien123@gmail.com</a>
+      <a class="chip" href="https://wa.me/201140706519" target="_blank" rel="noopener">+20 114 070 6519</a>
+      <a class="chip" href="https://www.linkedin.com/in/shehab-otc/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <span class="chip mono" style="cursor:default;">Cairo, Egypt</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Runs on</h2><span class="sec-index mono">01 / STACK</span></div>
+    <div class="tag-groups">
+      <div class="tag-group">
+        <span class="tg-label">Platforms</span>
+        <span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">Odoo</span><span class="tag">Zid</span><span class="tag">Salla</span><span class="tag">Ecwid</span>
+      </div>
+      <div class="tag-group">
+        <span class="tg-label">Marketplaces</span>
+        <span class="tag">Amazon</span><span class="tag">Noon</span><span class="tag">Jumia</span><span class="tag">Raneen</span>
+      </div>
+      <div class="tag-group">
+        <span class="tg-label">Toolset</span>
+        <span class="tag">SEO</span><span class="tag">UI/UX</span><span class="tag">CRM</span><span class="tag">Google Workspace</span><span class="tag">Lightroom</span><span class="tag">CapCut</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="sec-head"><h2>Featured storefronts</h2><span class="sec-index mono">02 / WORK</span></div>
+    <div class="cases">
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <h3>ariika</h3>
+            <div class="meta">E-Commerce Manager · dates to confirm</div>
+          </div>
+          <span class="live-badge">● Live</span>
+        </div>
+        <ul>
+          <li>Own end-to-end catalog and product onboarding — content, SKU attributes, pricing, and descriptions across all store touchpoints.</li>
+          <li>Manage full Shopify ↔ Odoo ERP sync for 2,000+ SKUs, resolving API/webhook errors and keeping inventory 100% accurate.</li>
+          <li>Lead Shopify storefront development — custom Liquid features, Core Web Vitals, site speed, and domain/DNS configuration.</li>
+          <li>Plan and run sale-event campaigns: discount rules, bundles, custom landing pages, and price updates for Black Friday and seasonal offers.</li>
+          <li>Design PDPs, collection pages, navigation, and checkout funnels (cart sliders, progress bars, one-click upsells) to lift AOV.</li>
+          <li>Integrate AI-powered search and personalized cross-sell/upsell, plus local payment gateways (Paymob, Valu, Tabby, Tamara) and shipping/logistics apps.</li>
+          <li>Oversee customer support escalations — investigating shipping/system log discrepancies and improving CSAT.</li>
+        </ul>
+        <div class="case-foot">
+          <span class="platform-pill">MENA home &amp; furniture D2C — Shopify</span>
+          <a class="visit" href="https://www.ariika.com" target="_blank" rel="noopener">Visit store ↗</a>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-head">
+          <div>
+            <h3>furvive</h3>
+            <div class="meta">E-Commerce Specialist · Oct 2023 – Oct 2025</div>
+          </div>
+          <span class="live-badge">● Live</span>
+        </div>
+        <ul>
+          <li>Managed 2,000+ SKUs across WordPress WooCommerce and Odoo.</li>
+          <li>Rebuilt catalog structure and fixed product-data inconsistencies, lifting SEO visibility.</li>
+          <li>Coordinated daily production with the marketing team to raise content and campaign quality.</li>
+          <li>Ran marketplace vendor platforms (Amazon, Noon, Raneen) — pricing, uploads, order checks.</li>
+          <li>Led and assigned tasks across the catalog team to streamline workflow.</li>
+        </ul>
+        <div class="case-foot">
+          <span class="platform-pill">WooCommerce / Odoo · Home &amp; office furniture</span>
+          <a class="visit" href="https://furvive.com" target="_blank" rel="noopener">Visit store ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><h2>Core skills</h2><span class="sec-index mono">03 / INDEX</span></div>
+    <div class="skills-grid">
+      <div class="skill-col"><div class="sk-num">A</div><h4>Catalog &amp; Operations</h4>
+        <ul><li>Catalog management (2,000+ SKUs)</li><li>Vendor relations</li><li>Logistics coordination</li><li>Order handling</li></ul></div>
+      <div class="skill-col"><div class="sk-num">B</div><h4>Growth &amp; Experience</h4>
+        <ul><li>SEO optimization</li><li>UI/UX basics</li><li>CRM</li><li>Advanced Google search / research</li></ul></div>
+      <div class="skill-col"><div class="sk-num">C</div><h4>Creative Production</h4>
+        <ul><li>Product photography</li><li>Reels &amp; short-form video</li><li>Editing — Lightroom, CapCut, Filmora, Picsart</li></ul></div>
+      <div class="skill-col"><div class="sk-num">D</div><h4>Leadership</h4>
+        <ul><li>Team leadership</li><li>Client communication</li><li>Quality control</li></ul></div>
+      <div class="skill-col"><div class="sk-num">E</div><h4>Platforms</h4>
+        <ul><li>Shopify · WooCommerce · Odoo</li><li>Zid · Salla · Ecwid</li></ul></div>
+      <div class="skill-col"><div class="sk-num">F</div><h4>Marketplaces</h4>
+        <ul><li>Amazon · Noon</li><li>Jumia · Raneen</li></ul></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><h2>Experience</h2><span class="sec-index mono">04 / LEDGER</span></div>
+    <div class="timeline">
+      <div class="trow">
+        <div class="tdate mono">2025 — Now</div>
+        <div>
+          <div class="trole">E-Commerce Leader <span class="tco">— Business Solutions</span></div>
+          <p>Shopify catalog ownership (1,000+ SKUs), UI/UX, marketplace integrations (Amazon, Noon, Jumia, Raneen), campaign coordination.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="tdate mono">2025</div>
+        <div>
+          <div class="trole">Freelance Product Photographer <span class="tco">— Furvive, Whiff Fragrances</span></div>
+          <p>Product, lifestyle, and reel photography; edited in Lightroom, CapCut, Filmora, Picsart.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="tdate mono">2023 — 2025</div>
+        <div>
+          <div class="trole">E-Commerce Specialist <span class="tco">— Furvive</span></div>
+          <p>2,000+ SKUs across WooCommerce and Odoo; catalog structure, SEO, marketplace vendor management.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="tdate mono">2023 — 2025</div>
+        <div>
+          <div class="trole">Data Researcher Executive <span class="tco">— BDS Services Pvt Ltd</span></div>
+          <p>Data mining and collection for international clients; accuracy verification and full research-to-delivery cycles.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="tdate mono">2021 — 2022</div>
+        <div>
+          <div class="trole">E-Commerce Manager <span class="tco">— Aqrab Agency</span></div>
+          <p>Ran the WOW and Luxury Furniture storefronts on Zid &amp; Salla (2,000+ SKUs), Aramex logistics, supplier negotiation on Alibaba, 1,000+ monthly customer resolutions. Both stores have since closed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Available for</h2><span class="sec-index mono">05 / SERVICES</span></div>
+    <div class="services">
+      <div class="svc"><span class="svc-tag">CATALOG</span><h4>Catalog cleanup &amp; management</h4><p>Structuring, correcting, and scaling product catalogs on Shopify, WooCommerce, Odoo, Zid, or Salla.</p></div>
+      <div class="svc"><span class="svc-tag">MARKETPLACE</span><h4>Marketplace vendor management</h4><p>Amazon, Noon, Jumia, and Raneen dashboards — listings, pricing, and order accuracy.</p></div>
+      <div class="svc"><span class="svc-tag">SEO</span><h4>Listing &amp; SEO optimization</h4><p>Rewriting and structuring listings to improve visibility and conversion.</p></div>
+      <div class="svc"><span class="svc-tag">UI/UX</span><h4>Storefront UX improvements</h4><p>Practical UI/UX fixes to the customer journey — navigation, PDPs, checkout friction.</p></div>
+      <div class="svc"><span class="svc-tag">DEV</span><h4>Shopify development &amp; integrations</h4><p>Custom Liquid builds, third-party app audits, and payment/shipping integrations (Paymob, Valu, Tabby, Tamara).</p></div>
+      <div class="svc"><span class="svc-tag">MEDIA</span><h4>Product photography &amp; reels</h4><p>Product, lifestyle, and social reel shoots, edited and ready to publish.</p></div>
+      <div class="svc"><span class="svc-tag">OPS</span><h4>Team &amp; workflow leadership</h4><p>Setting up task workflows and leading small ops/catalog teams.</p></div>
+    </div>
+  </section>
+
+  <section id="brief">
+    <div class="sec-head"><h2>Start a project</h2><span class="sec-index mono">06 / BRIEF</span></div>
+    <p style="color:var(--ink-soft); max-width:60ch; margin:0 0 24px; font-size:0.95rem;">Tell me a bit about your store and what you need — I'll reply by email or WhatsApp.</p>
+    <div id="briefFormWrap">
+      <form class="brief-form" id="briefForm">
+        <div class="field"><label>Name</label><input type="text" name="name" required></div>
+        <div class="field"><label>Company / Store</label><input type="text" name="company"></div>
+        <div class="field"><label>Platform</label>
+          <select name="platform">
+            <option>Shopify</option><option>WooCommerce</option><option>Odoo</option><option>Zid</option><option>Salla</option><option>Not sure yet</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Budget / timeline</label><input type="text" name="budget" placeholder="e.g. ongoing, or a 2-week project"></div>
+        <div class="field full"><label>What do you need help with?</label><textarea name="need" required></textarea></div>
+        <div class="field full"><label>Email or WhatsApp</label><input type="text" name="reach" required></div>
+        <div class="field full">
+          <button type="submit" class="brief-submit">Send brief</button>
+          <div class="brief-note" id="briefNote">Submissions are emailed to me directly via Formspree.</div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:none;">
+    <div class="contact-panel">
+      <div>
+        <h2>Let's build your storefront.</h2>
+        <p>Open to freelance and contract e-commerce work — development, operations, campaigns, or growth. Not just catalog: the whole store.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn gold" href="mailto:shehabeldien123@gmail.com">Email me</a>
+        <a class="btn outline" href="https://wa.me/201140706519" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn outline" href="https://www.linkedin.com/in/shehab-otc/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>SHEHAB ELDIEN SAIED — CAIRO, EGYPT</footer>
+
+<script>
+  // 1) Sign up free at https://formspree.io, create a form, and paste its endpoint below.
+  // 2) Replace YOUR_FORM_ID with the id Formspree gives you (looks like "https://formspree.io/f/abcdwxyz").
+  const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+  document.getElementById("briefForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    const form = e.target;
+    const note = document.getElementById("briefNote");
+    if (FORM_ENDPOINT.includes("YOUR_FORM_ID")){
+      note.textContent = "Form isn't connected yet — please email or WhatsApp directly for now.";
+      return;
+    }
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(form)
+      });
+      if (res.ok){
+        document.getElementById("briefFormWrap").innerHTML = "<div class=\"brief-thanks\">Thanks — got it. I'll follow up by email or WhatsApp shortly.</div>";
+      } else {
+        note.textContent = "Couldn't send — please try again or email directly.";
+      }
+    } catch (err){
+      note.textContent = "Couldn't send — please try again or email directly.";
+    }
+  });
+</script>
+</body>
+</html>
