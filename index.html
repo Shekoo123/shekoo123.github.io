@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shehab Eldien — E-Commerce Developement & Management</title>
+<title>Shehab Eldien — E-Commerce Development & Management</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -56,6 +56,15 @@
   .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:30px; }
   .sec-head h2{ font-size:clamp(1.6rem,3.4vw,2.2rem); }
   .sec-index{ font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:0.8rem; }
+
+  /* Impact & Metrics Grid Styles */
+  .metrics-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; }
+  @media (max-width:850px){ .metrics-grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:550px){ .metrics-grid{ grid-template-columns:1fr; } }
+  .metric-card{ background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:22px; display:flex; flex-direction:column; justify-content:space-between; }
+  .metric-card .val{ font-family:"Big Shoulders Display",sans-serif; font-size:2.8rem; font-weight:800; color:var(--amber-ink); line-height:1; margin-bottom:8px; }
+  .metric-card h4{ font-family:"IBM Plex Sans",sans-serif; font-size:0.95rem; font-weight:600; margin:0 0 6px; text-transform:none; color:var(--ink); }
+  .metric-card p{ font-size:0.85rem; color:var(--ink-soft); margin:0; line-height:1.45; }
 
   .tag-groups{ display:flex; flex-direction:column; gap:14px; }
   .tag-group{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
@@ -129,6 +138,7 @@
     <div class="brand">SHEHAB ELDIEN</div>
     <div class="status-tag"><span class="status-dot"></span>Open for freelance work</div>
     <nav class="topnav">
+      <a href="#metrics">Impact</a>
       <a href="#work">Work</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -147,8 +157,8 @@
     <p class="role">With hands-on expertise, I bridge the gap between technical operations and business growth to deliver seamless, scalable online shopping experiences.</p>
 
     <div class="stat-row">
-      <div class="stat"><div class="num mono">6+</div><div class="lbl">Years in e-commerce ops</div></div>
-      <div class="stat"><div class="num mono">2,000+</div><div class="lbl">SKUs managed at once</div></div>
+      <div class="stat"><div class="num mono">6+</div><div class="lbl">Years in e-commerce & dev</div></div>
+      <div class="stat"><div class="num mono">15,000+</div><div class="lbl">SKUs managed & scaled</div></div>
       <div class="stat"><div class="num mono">6</div><div class="lbl">Platforms &amp; marketplaces</div></div>
       <div class="stat"><div class="num mono">1,000+</div><div class="lbl">Customer issues resolved / mo</div></div>
     </div>
@@ -174,20 +184,57 @@
       </div>
       <div class="tag-group">
         <span class="tg-label">Toolset</span>
-        <span class="tag">SEO</span><span class="tag">UI/UX</span><span class="tag">CRM</span><span class="tag">Google Workspace</span><span class="tag">Lightroom</span><span class="tag">CapCut</span>
+        <span class="tag">Shopify Liquid</span><span class="tag">SEO</span><span class="tag">UI/UX</span><span class="tag">CRM</span><span class="tag">Google Workspace</span><span class="tag">Lightroom</span><span class="tag">CapCut</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: IMPACT & KEY METRICS -->
+  <section id="metrics">
+    <div class="sec-head"><h2>Key Impact & Metrics</h2><span class="sec-index mono">02 / METRICS</span></div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="val">15K+</div>
+        <h4>Multi-Region Catalog Scaling</h4>
+        <p>Managed and streamlined product catalogs of 15,000+ SKUs across multiple regional storefronts (Egypt & KSA).</p>
+      </div>
+      <div class="metric-card">
+        <div class="val">40%</div>
+        <h4>Speed & Performance Boost</h4>
+        <p>Improved Google PageSpeed score by 40% through custom Liquid theme optimization and clean code cleanup.</p>
+      </div>
+      <div class="metric-card">
+        <div class="val">50%</div>
+        <h4>Workflow Automation</h4>
+        <p>Automated bulk inventory & price updates using Shopify Liquid and CSV workflows, reducing manual effort by 50%.</p>
+      </div>
+      <div class="metric-card">
+        <div class="val">Real-Time</div>
+        <h4>ERP & System Integrations</h4>
+        <p>Successfully integrated ERP systems with Shopify to enable real-time inventory sync and order tracking.</p>
+      </div>
+      <div class="metric-card">
+        <div class="val">+15%</div>
+        <h4>UX & Conversion Uplift</h4>
+        <p>Optimized UI/UX for product detail pages (PDP), contributing to a 15% increase in store conversion rates.</p>
+      </div>
+      <div class="metric-card">
+        <div class="val">100%</div>
+        <h4>Storefront Continuity</h4>
+        <p>Bridging technical development and daily operations to ensure zero-downtime execution and smooth scale.</p>
       </div>
     </div>
   </section>
 
   <section id="work">
-    <div class="sec-head"><h2>Featured storefronts</h2><span class="sec-index mono">02 / WORK</span></div>
+    <div class="sec-head"><h2>Featured storefronts</h2><span class="sec-index mono">03 / WORK</span></div>
     <div class="cases">
 
       <div class="case">
         <div class="case-head">
           <div>
             <h3>ariika</h3>
-            <div class="meta">E-Commerce Manager · dates to confirm</div>
+            <div class="meta">E-Commerce Specialist & Developer</div>
           </div>
           <span class="live-badge">● Live</span>
         </div>
@@ -231,16 +278,16 @@
   </section>
 
   <section id="skills">
-    <div class="sec-head"><h2>Core skills</h2><span class="sec-index mono">03 / INDEX</span></div>
+    <div class="sec-head"><h2>Core skills</h2><span class="sec-index mono">04 / INDEX</span></div>
     <div class="skills-grid">
-      <div class="skill-col"><div class="sk-num">A</div><h4>Catalog &amp; Operations</h4>
-        <ul><li>Catalog management (2,000+ SKUs)</li><li>Vendor relations</li><li>Logistics coordination</li><li>Order handling</li></ul></div>
-      <div class="skill-col"><div class="sk-num">B</div><h4>Growth &amp; Experience</h4>
-        <ul><li>SEO optimization</li><li>UI/UX basics</li><li>CRM</li><li>Advanced Google search / research</li></ul></div>
-      <div class="skill-col"><div class="sk-num">C</div><h4>Creative Production</h4>
-        <ul><li>Product photography</li><li>Reels &amp; short-form video</li><li>Editing — Lightroom, CapCut, Filmora, Picsart</li></ul></div>
-      <div class="skill-col"><div class="sk-num">D</div><h4>Leadership</h4>
-        <ul><li>Team leadership</li><li>Client communication</li><li>Quality control</li></ul></div>
+      <div class="skill-col"><div class="sk-num">A</div><h4>Development &amp; Tech</h4>
+        <ul><li>Shopify Liquid Development</li><li>Theme &amp; Speed Optimization</li><li>ERP / API Integrations</li><li>UI/UX Optimization</li></ul></div>
+      <div class="skill-col"><div class="sk-num">B</div><h4>Catalog &amp; Operations</h4>
+        <ul><li>Catalog management (15,000+ SKUs)</li><li>Vendor relations</li><li>Logistics coordination</li><li>Order handling</li></ul></div>
+      <div class="skill-col"><div class="sk-num">C</div><h4>Growth &amp; Experience</h4>
+        <ul><li>Conversion Rate Optimization (CRO)</li><li>SEO optimization</li><li>CRM Workflows</li><li>Advanced Google Research</li></ul></div>
+      <div class="skill-col"><div class="sk-num">D</div><h4>Creative Production</h4>
+        <ul><li>Product photography</li><li>Reels &amp; short-form video</li><li>Editing — Lightroom, CapCut, Filmora</li></ul></div>
       <div class="skill-col"><div class="sk-num">E</div><h4>Platforms</h4>
         <ul><li>Shopify · WooCommerce · Odoo</li><li>Zid · Salla · Ecwid</li></ul></div>
       <div class="skill-col"><div class="sk-num">F</div><h4>Marketplaces</h4>
@@ -249,7 +296,7 @@
   </section>
 
   <section id="experience">
-    <div class="sec-head"><h2>Experience</h2><span class="sec-index mono">04 / LEDGER</span></div>
+    <div class="sec-head"><h2>Experience</h2><span class="sec-index mono">05 / LEDGER</span></div>
     <div class="timeline">
       <div class="trow">
         <div class="tdate mono">2025 — Now</div>
@@ -290,20 +337,19 @@
   </section>
 
   <section>
-    <div class="sec-head"><h2>Available for</h2><span class="sec-index mono">05 / SERVICES</span></div>
+    <div class="sec-head"><h2>Available for</h2><span class="sec-index mono">06 / SERVICES</span></div>
     <div class="services">
+      <div class="svc"><span class="svc-tag">DEV</span><h4>Shopify development &amp; integrations</h4><p>Custom Liquid builds, third-party app audits, ERP synchronization, and payment/shipping integrations (Paymob, Valu, Tabby, Tamara).</p></div>
       <div class="svc"><span class="svc-tag">CATALOG</span><h4>Catalog cleanup &amp; management</h4><p>Structuring, correcting, and scaling product catalogs on Shopify, WooCommerce, Odoo, Zid, or Salla.</p></div>
       <div class="svc"><span class="svc-tag">MARKETPLACE</span><h4>Marketplace vendor management</h4><p>Amazon, Noon, Jumia, and Raneen dashboards — listings, pricing, and order accuracy.</p></div>
-      <div class="svc"><span class="svc-tag">SEO</span><h4>Listing &amp; SEO optimization</h4><p>Rewriting and structuring listings to improve visibility and conversion.</p></div>
-      <div class="svc"><span class="svc-tag">UI/UX</span><h4>Storefront UX improvements</h4><p>Practical UI/UX fixes to the customer journey — navigation, PDPs, checkout friction.</p></div>
-      <div class="svc"><span class="svc-tag">DEV</span><h4>Shopify development &amp; integrations</h4><p>Custom Liquid builds, third-party app audits, and payment/shipping integrations (Paymob, Valu, Tabby, Tamara).</p></div>
+      <div class="svc"><span class="svc-tag">SEO & CRO</span><h4>Listing &amp; SEO optimization</h4><p>Rewriting and structuring listings to improve search visibility and conversion rates.</p></div>
+      <div class="svc"><span class="svc-tag">UI/UX</span><h4>Storefront UX improvements</h4><p>Practical UI/UX fixes to the customer journey — navigation, PDPs, and checkout friction.</p></div>
       <div class="svc"><span class="svc-tag">MEDIA</span><h4>Product photography &amp; reels</h4><p>Product, lifestyle, and social reel shoots, edited and ready to publish.</p></div>
-      <div class="svc"><span class="svc-tag">OPS</span><h4>Team &amp; workflow leadership</h4><p>Setting up task workflows and leading small ops/catalog teams.</p></div>
     </div>
   </section>
 
   <section id="brief">
-    <div class="sec-head"><h2>Start a project</h2><span class="sec-index mono">06 / BRIEF</span></div>
+    <div class="sec-head"><h2>Start a project</h2><span class="sec-index mono">07 / BRIEF</span></div>
     <p style="color:var(--ink-soft); max-width:60ch; margin:0 0 24px; font-size:0.95rem;">Tell me a bit about your store and what you need — I'll reply by email or WhatsApp.</p>
     <div id="briefFormWrap">
       <form class="brief-form" id="briefForm">
@@ -344,8 +390,6 @@
 <footer>SHEHAB ELDIEN SAIED — CAIRO, EGYPT</footer>
 
 <script>
-  // 1) Sign up free at https://formspree.io, create a form, and paste its endpoint below.
-  // 2) Replace YOUR_FORM_ID with the id Formspree gives you (looks like "https://formspree.io/f/abcdwxyz").
   const FORM_ENDPOINT = "https://formspree.io/f/xppzjaky";
 
   document.getElementById("briefForm").addEventListener("submit", async function(e){
