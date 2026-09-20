@@ -73,7 +73,8 @@
   .tag-groups{ display:flex; flex-direction:column; gap:14px; }
   .tag-group{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
   .tag-group .tg-label{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; width:112px; flex:0 0 auto; }
-  .tag{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; padding:5px 10px; border-radius:2px; border:1px solid var(--border); background:var(--surface); color:var(--ink-soft); }
+  .tag{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; padding:5px 10px; border-radius:2px; border:1px solid var(--border); background:var(--surface); color:var(--ink-soft); transition:all 0.2s ease; cursor:default; }
+  .tag:hover{ border-color:var(--amber); color:var(--amber); background:color-mix(in srgb, var(--amber) 12%, var(--surface)); transform:translateY(-2px); }
 
   .cases{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
   @media (max-width:760px){ .cases{ grid-template-columns:1fr; } }
