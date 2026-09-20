@@ -130,6 +130,13 @@
   .brief-thanks{ text-align:center; padding:30px; color:var(--ink-soft); font-size:0.98rem; }
 
   footer{ padding:26px 0 46px; text-align:center; color:var(--ink-faint); font-size:0.78rem; font-family:"IBM Plex Mono",monospace; }
+
+  /* Scroll-reveal: only kicks in once JS has confirmed it can run the observer (see script at bottom) */
+  html.js .reveal{ opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  html.js .reveal.in-view{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    html.js .reveal{ opacity:1; transform:none; transition:none; }
+  }
 </style>
 </head>
 <body>
@@ -172,7 +179,7 @@
     </div>
   </section>
 
-  <section id="stack">
+  <section id="stack" class="reveal">
     <div class="sec-head"><h2>Runs on</h2><span class="sec-index mono">01 / STACK</span></div>
     <div class="tag-groups">
       <div class="tag-group">
@@ -191,7 +198,7 @@
   </section>
 
   <!-- SECTION: IMPACT & KEY METRICS -->
-  <section id="metrics">
+  <section id="metrics" class="reveal">
     <div class="sec-head"><h2>Key Impact & Metrics</h2><span class="sec-index mono">02 / METRICS</span></div>
     <div class="metrics-grid">
       <div class="metric-card">
@@ -227,7 +234,7 @@
     </div>
   </section>
 
-  <section id="work">
+  <section id="work" class="reveal">
     <div class="sec-head"><h2>Featured storefronts</h2><span class="sec-index mono">03 / WORK</span></div>
     <div class="cases">
 
@@ -280,7 +287,7 @@
     </div>
   </section>
 
-  <section id="skills">
+  <section id="skills" class="reveal">
     <div class="sec-head"><h2>Core skills</h2><span class="sec-index mono">04 / INDEX</span></div>
     <div class="skills-grid">
       <div class="skill-col"><span class="sk-bullet"></span><h4>Development &amp; Tech</h4>
@@ -298,7 +305,7 @@
     </div>
   </section>
 
-  <section id="experience">
+  <section id="experience" class="reveal">
     <div class="sec-head"><h2>Experience</h2><span class="sec-index mono">05 / LEDGER</span></div>
     <div class="timeline">
       <div class="trow">
@@ -339,7 +346,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <div class="sec-head"><h2>Available for</h2><span class="sec-index mono">06 / SERVICES</span></div>
     <div class="services">
       <div class="svc"><span class="svc-tag">DEV</span><h4>Shopify development &amp; integrations</h4><p>Custom Liquid builds, third-party app audits, ERP synchronization, and payment/shipping integrations (Paymob, Valu, Tabby, Tamara).</p></div>
@@ -352,7 +359,7 @@
     </div>
   </section>
 
-  <section id="brief">
+  <section id="brief" class="reveal">
     <div class="sec-head"><h2>Start a project</h2><span class="sec-index mono">07 / BRIEF</span></div>
     <p style="color:var(--ink-soft); max-width:60ch; margin:0 0 24px; font-size:0.95rem;">Tell me a bit about your store and what you need — I'll reply by email or WhatsApp.</p>
     <div id="briefFormWrap">
@@ -374,7 +381,7 @@
     </div>
   </section>
 
-  <section id="contact" style="border-bottom:none;">
+  <section id="contact" class="reveal" style="border-bottom:none;">
     <div class="contact-panel">
       <div>
         <h2>Prefer a quicker note?</h2>
@@ -393,6 +400,26 @@
 <footer>SHEHAB ELDIEN SAIED — CAIRO, EGYPT</footer>
 
 <script>
+  // ----- Light scroll-reveal for sections -----
+  // Progressive enhancement: only hides sections (via CSS) once we know JS can run
+  // and observe them, so nothing breaks if JS fails or is disabled.
+  document.documentElement.classList.add('js');
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('in-view'));
+  }
+
   const FORM_ENDPOINT = "https://formspree.io/f/xppzjaky";
 
   document.getElementById("briefForm").addEventListener("submit", async function(e){
