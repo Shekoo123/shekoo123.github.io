@@ -71,10 +71,10 @@
   .metric-card p{ font-size:0.85rem; color:var(--ink-soft); margin:0; line-height:1.45; }
 
   .proof-label{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; margin:18px 0 10px; }
-  .proof-scroll{ display:flex; gap:14px; overflow-x:auto; padding-bottom:10px; margin:0 -4px; scrollbar-width:thin; }
+  .proof-scroll{ display:flex; gap:14px; overflow-x:auto; padding-bottom:10px; margin:0 -4px; scrollbar-width:thin; min-width:0; }
   .proof-scroll::-webkit-scrollbar{ height:6px; }
   .proof-scroll::-webkit-scrollbar-thumb{ background:var(--border); border-radius:4px; }
-  .proof-item{ flex:0 0 200px; scroll-snap-align:start; }
+  .proof-item{ flex:0 0 155px; scroll-snap-align:start; }
   .proof-item img{ width:100%; display:block; border-radius:4px; border:1px solid var(--border); background:var(--bg); }
   .proof-item h5{ font-family:"IBM Plex Sans",sans-serif; font-size:0.8rem; font-weight:600; margin:8px 0 3px; color:var(--ink); }
   .proof-item p{ font-size:0.72rem; color:var(--ink-faint); margin:0; line-height:1.4; }
@@ -85,9 +85,9 @@
   .tag{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; padding:5px 10px; border-radius:2px; border:1px solid var(--border); background:var(--surface); color:var(--ink-soft); transition:all 0.2s ease; cursor:default; }
   .tag:hover{ border-color:var(--amber); color:var(--amber); background:color-mix(in srgb, var(--amber) 12%, var(--surface)); transform:translateY(-2px); }
 
-  .cases{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .cases{ display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:22px; }
   @media (max-width:760px){ .cases{ grid-template-columns:1fr; } }
-  .case{ background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:26px; display:flex; flex-direction:column; gap:16px; }
+  .case{ background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:26px; display:flex; flex-direction:column; gap:16px; min-width:0; }
   .case-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
   .case-head h3{ font-size:1.6rem; }
   .live-badge{ display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; font-family:"IBM Plex Mono",monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--teal); background:var(--teal-soft); padding:5px 9px; border-radius:2px; }
