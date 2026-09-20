@@ -70,6 +70,15 @@
   .metric-card h4{ font-family:"IBM Plex Sans",sans-serif; font-size:0.95rem; font-weight:600; margin:0 0 6px; text-transform:none; color:var(--ink); }
   .metric-card p{ font-size:0.85rem; color:var(--ink-soft); margin:0; line-height:1.45; }
 
+  .proof-label{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; margin:18px 0 10px; }
+  .proof-scroll{ display:flex; gap:14px; overflow-x:auto; padding-bottom:10px; margin:0 -4px; scrollbar-width:thin; }
+  .proof-scroll::-webkit-scrollbar{ height:6px; }
+  .proof-scroll::-webkit-scrollbar-thumb{ background:var(--border); border-radius:4px; }
+  .proof-item{ flex:0 0 200px; scroll-snap-align:start; }
+  .proof-item img{ width:100%; display:block; border-radius:4px; border:1px solid var(--border); background:var(--bg); }
+  .proof-item h5{ font-family:"IBM Plex Sans",sans-serif; font-size:0.8rem; font-weight:600; margin:8px 0 3px; color:var(--ink); }
+  .proof-item p{ font-size:0.72rem; color:var(--ink-faint); margin:0; line-height:1.4; }
+
   .tag-groups{ display:flex; flex-direction:column; gap:14px; }
   .tag-group{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
   .tag-group .tg-label{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; width:112px; flex:0 0 auto; }
@@ -257,6 +266,41 @@
           <li>Build and maintain Klaviyo email/SMS flows — welcome series, abandoned cart, post-purchase, and win-back — alongside segmentation and campaign calendars that grow retention revenue.</li>
           <li>Oversee customer support escalations — investigating shipping/system log discrepancies and improving CSAT.</li>
         </ul>
+
+        <div class="proof-label">Proof of work</div>
+        <div class="proof-scroll">
+          <div class="proof-item">
+            <img src="proof/speed.jpg" alt="Google PageSpeed Insights mobile report for ariika.com — 88 Performance, Core Web Vitals passed">
+            <h5>PageSpeed (Mobile)</h5>
+            <p>88 Performance, Core Web Vitals passed — LCP 1.9s, INP 165ms, CLS 0.03.</p>
+          </div>
+          <div class="proof-item">
+            <img src="proof/homepage.jpg" alt="ariika.com homepage — hero banner and trust badges">
+            <h5>Homepage</h5>
+            <p>Express-delivery callout and material trust badges above the fold.</p>
+          </div>
+          <div class="proof-item">
+            <img src="proof/sales.jpg" alt="Store conversion rate trend chart, January to September 2026">
+            <h5>Conversion trend</h5>
+            <p>Conversion rate more than tripled — ~0.6% in Jan to a 2.3% peak in Jul.</p>
+          </div>
+          <div class="proof-item">
+            <img src="proof/mattresses.collection.jpg" alt="Mattresses collection page with filters and fast-delivery badges">
+            <h5>Collection page</h5>
+            <p>Filters, live stock states, and Fast Delivery badges to cut friction.</p>
+          </div>
+          <div class="proof-item">
+            <img src="proof/product.jpg" alt="Product page for the Nido Motion Corner Sofa with financing and fast delivery">
+            <h5>Product page</h5>
+            <p>Financing, stock urgency, and Fast Delivery in the buy box.</p>
+          </div>
+          <div class="proof-item">
+            <img src="proof/product-content.JPG" alt="Product content blocks highlighting sofa features">
+            <h5>Product content</h5>
+            <p>Feature blocks that help customers buy high-ticket items with confidence.</p>
+          </div>
+        </div>
+
         <div class="case-foot">
           <span class="platform-pill">MENA home &amp; furniture D2C — Shopify</span>
           <a class="visit" href="https://www.ariika.com" target="_blank" rel="noopener">Visit store ↗</a>
