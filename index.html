@@ -46,9 +46,30 @@
   /* Hero: text on the left, portrait on the right */
   .hero-grid{ display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:44px; align-items:center; }
   .hero-copy{ min-width:0; }
-  .hero-photo{ position:relative; }
-  .hero-photo::before{ content:""; position:absolute; inset:14% 10%; border-radius:50%; background:var(--amber); filter:blur(70px); opacity:0.32; z-index:0; pointer-events:none; }
-  .hero-photo img{ position:relative; z-index:1; width:100%; display:block; aspect-ratio:1 / 1; object-fit:cover; object-position:center top; border-radius:6px; border:1px solid var(--border); background:var(--surface); }
+  .hero-photo{ position:relative; aspect-ratio:1 / 1; }
+  /* soft red ambient light behind the portrait — same red as the site accent */
+  .hero-photo::before{ content:""; position:absolute; inset:6%; border-radius:50%; background:var(--amber); filter:blur(90px); opacity:0.22; z-index:0; pointer-events:none; }
+  .hero-photo img{
+    position:relative; z-index:1; width:100%; height:100%; display:block;
+    object-fit:cover; object-position:center top;
+    border:none; border-radius:0; background:transparent;
+    /* let the photo's black background melt into the page black */
+    mix-blend-mode:screen;
+    /* feather the edges so there is no visible rectangle */
+    -webkit-mask-image:radial-gradient(ellipse 70% 76% at 50% 46%, #000 58%, rgba(0,0,0,0.55) 78%, transparent 100%);
+            mask-image:radial-gradient(ellipse 70% 76% at 50% 46%, #000 58%, rgba(0,0,0,0.55) 78%, transparent 100%);
+    /* nudge the photo's red toward the site's #E63946 */
+    filter:saturate(0.88) contrast(1.06) hue-rotate(-4deg);
+  }
+  /* technical corner frame — same language as the mono labels and thin rules */
+  .hero-photo .pf{ position:absolute; z-index:2; width:26px; height:26px; border:1.5px solid var(--amber); pointer-events:none; opacity:0.9; }
+  .hero-photo .pf.tl{ top:0; left:0; border-right:none; border-bottom:none; }
+  .hero-photo .pf.tr{ top:0; right:0; border-left:none; border-bottom:none; }
+  .hero-photo .pf.bl{ bottom:0; left:0; border-right:none; border-top:none; }
+  .hero-photo .pf.br{ bottom:0; right:0; border-left:none; border-top:none; }
+  .hero-photo .pf-tag{ position:absolute; z-index:2; left:12px; bottom:10px; display:inline-flex; align-items:center; gap:8px; font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); pointer-events:none; }
+  .hero-photo .pf-tag::before{ content:""; width:7px; height:7px; background:var(--amber); }
+  .hero-photo .pf-idx{ position:absolute; z-index:2; right:12px; top:10px; font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.08em; color:var(--ink-faint); pointer-events:none; }
   @media (max-width:820px){
     .hero-grid{ grid-template-columns:1fr; gap:30px; }
     .hero-photo{ max-width:320px; }
@@ -194,6 +215,9 @@
       <div class="hero-photo">
         <!-- Save your portrait as portrait.jpg next to index.html (or change the path below) -->
         <img src="portrait.jpg" alt="Shehab Eldien — e-commerce specialist and developer" width="340" height="340" loading="eager" fetchpriority="high">
+        <span class="pf tl"></span><span class="pf tr"></span><span class="pf bl"></span><span class="pf br"></span>
+        <span class="pf-idx">00 / PORTRAIT</span>
+        <span class="pf-tag">Cairo, EG</span>
       </div>
     </div>
 
